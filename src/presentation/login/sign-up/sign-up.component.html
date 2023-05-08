@@ -1,0 +1,107 @@
+<div class="w-screen flex flex-col justify-center items-center h-screen bg-gradient-to-r from-purple-500 to-blue-500 aspect-video">
+  <div class="flex flex-col justify-center items-center w-5/6 h-1/6
+              lg:h-1/5">
+    <h1 class="text-white">Plan your day</h1>
+    <p class="text-white font-semibold
+              md:text-lg
+              lg:text-2xl">with us</p>
+  </div>
+
+  <form [formGroup]="signUpForm" class="flex flex-col justify-center items-center bg-purple-800 rounded-sm shadow-2xl shadow-slate-100 w-5/6 h-3/4
+                xl:w-3/6">
+    <fieldset class="border-none m-0 h-5/6 w-full px-2">
+
+      <div class="flex flex-col w-full h-1/5 mb-2">
+        <h2 class="text-center text-white font-bold mb-0">Sign Up</h2>
+        <p class="text-center text-white font-semibold text-sm
+                  md:text-base
+                  lg:text-lg">Create an account</p>
+      </div>
+
+      <div class="flex flex-col items-center mb-2 h-1/5">
+        <label class="text-lg text-center font-bold text-white
+                      md:text-3xl
+                      lg:text-4xl">Username</label>
+        <input formControlName="username"
+                class="w-10/12 rounded-sm shadow h-2/4
+                      md:placeholder:text-lg md:text-lg
+                      lg:placeholder:text-2xl lg:text-2xl"
+        type="email" placeholder="Foo124">
+      </div>
+
+      <div class="flex flex-col items-center mb-2 h-1/5">
+        <label class="text-lg text-center font-bold text-white
+                      md:text-3xl
+                      lg:text-4xl">Email</label>
+        <input formControlName="email"
+                class="w-10/12 rounded-sm shadow h-2/4
+                      md:placeholder:text-lg md:text-lg
+                      lg:placeholder:text-2xl lg:text-2xl"
+        type="email" placeholder="Example@mail.com">
+      </div>
+
+      <div class="flex flex-col items-center mb-2 h-1/5">
+        <label class="text-lg text-center font-bold text-white
+                      md:text-3xl
+                      lg:text-4xl">Password</label>
+        <input formControlName="password"
+        class="w-10/12 rounded-sm shadow h-2/4
+                      md:placeholder:text-lg md:text-lg"
+                      type="password" placeholder="********">
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-2 mb-2 h-1/5
+                  xsm:flex-row xsm:h-1/5">
+        <button (click)="signInUser()"
+                class="bg-blue-500 font-semibold text-white rounded-sm shadow-md w-fit py-1 px-4
+                        xsm:text-lg
+                        md:text-3xl
+                        lg:py-3 lg:px-6
+                        hover:transition-all hover:ease-in hover:duration-500 hover:bg-blue-600"
+                        >Send</button>
+        <button (click)="changeComponent()" class="bg-blue-500 font-semibold text-white rounded-sm shadow-md w-fit py-1 px-4
+                        xsm:text-lg
+                        md:text-3xl
+                        lg:py-3 lg:px-6
+                        hover:transition-all hover:ease-in hover:duration-500 hover:bg-blue-600"
+                        >Login</button>
+      </div>
+
+    </fieldset>
+  </form>
+
+  <div class="flex flex-col justify-center items-center fixed bottom-2 left-2 w-fit h-fit gap-2"
+  *ngIf="showError">
+    <p *ngIf="showError && signUpForm.get('username')?.hasError('required')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Username is Required</p>
+
+    <p *ngIf="showError && signUpForm.get('username')?.hasError('pattern')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Username require at least 4 characters</p>
+
+    <p *ngIf="showError && signUpForm.get('email')?.hasError('required')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Email is Required</p>
+
+    <p *ngIf="showError && (signUpForm.get('email')?.hasError('pattern') || signUpForm.get('email')?.hasError('email'))"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Please, write a valid email</p>
+
+    <p *ngIf="showError && signUpForm.get('password')?.hasError('required')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Password is Required</p>
+
+    <p *ngIf="showError && signUpForm.get('password')?.hasError('pattern')"
+    class="flex flex-col my-auto bg-red-500 rounded-md text-white px-4 py-2">
+    <span> Password require at least 8 characters </span>
+    <span> and includes: </span>
+    <span>at least 1 Upper case</span>
+    <span>at least 1 Lower case</span>
+    <span>at least 1 Number</span>
+    <span>at least 1 Special character</span>
+  </p>
+
+  </div>
+
+  <div class="flex flex-col justify-center items-center fixed bottom-2 left-2 w-fit h-fit gap-2"
+  *ngIf="showOk">
+  <p *ngIf="showOk"
+  class="my-auto bg-green-500 rounded-md text-white px-4 py-2">Register successful</p>
+  </div>
+</div>

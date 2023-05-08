@@ -1,0 +1,61 @@
+<div class="flex w-full h-full">
+  <div class="h-full flex flex-col flex-auto mx-2 w-56 bg-slate-800 px-4 text-white
+              xsm:mx-3 xsm:w-64">
+    <div class="h-fit flex flex-col flex-auto cursor-pointer" (click)="turnCardNow()" *ngIf="!turnCard">
+
+      <div class="h-1/6 xsm:h-1/4 mb-6">
+        <h3>Title</h3>
+        <p class="m-0 p-1 rounded-sm bg-slate-700 text-xs
+                  xsm:text-base">Contenido del titulo</p>
+      </div>
+
+      <div class="h-1/6 xsm:h-2/4">
+        <h3>Deadline</h3>
+        <p class="m-0 p-1 rounded-sm bg-slate-700 text-xs
+                  xsm:text-base">20/12/2023</p>
+      </div>
+
+    </div>
+
+    <div class="h-full flex flex-col flex-auto gap-5 cursor-pointer" (click)="turnCardNow()" *ngIf="turnCard">
+
+      <div class="h-1/4">
+        <h3>Description</h3>
+        <p class="m-0 p-1 rounded-sm bg-slate-700 text-xs">La música es una forma de arte que puede evocar emociones intensas y transportarnos a lugares y momentos que de otra manera podrían permanecer inaccesibles en nuestras mentes.</p>
+      </div>
+    </div>
+
+    <div class="h-fit flex flex-row justify-between items-end gap-3 mb-1
+                xsm:h-1/4">
+      <div class="flex flex-row gap-2 justify-start">
+        <button class="flex flex-row gap-1 justify-center items-center bg-slate-700 px-2 rounded-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#008000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l5 5l10 -10" />
+          </svg>
+          Done
+        </button>
+      </div>
+
+      <div class="h-fit flex flex-row justify-between items-end gap-3">
+        <button class="w-fit h-fit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+            <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+          </svg>
+        </button>
+        <button class="w-fit h-fit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#a2231d" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="10" y1="11" x2="10" y2="17" />
+            <line x1="14" y1="11" x2="14" y2="17" />
+            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

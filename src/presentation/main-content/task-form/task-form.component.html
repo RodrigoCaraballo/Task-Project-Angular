@@ -1,0 +1,33 @@
+<form class="w-full h-full" [formGroup]="task" *ngIf="activateNewTasks">
+  <fieldset class="flex flex-col h-full w-full bg-slate-800 rounded-sm p-1 gap-4">
+    <div class="flex flex-col w-full items-center">
+      <label class="text-lg text-white font-semibold">Task Title</label>
+      <input class="h-8 w-11/12 min-h-[50px] rounded-t-md placeholder:text-center" type="text" placeholder="Buy food">
+    </div>
+
+    <div class="flex flex-col w-full items-center">
+      <label class="text-lg text-white font-semibold">Task Description</label>
+      <textarea class="w-11/12 min-h-[50px] rounded-t-md h-auto resize-none rounded-t-sm placeholder:text-center"
+        type="text" placeholder="The description is optional"></textarea>
+    </div>
+
+    <div class="flex flex-col w-full items-center">
+      <label class="text-lg text-white font-semibold">Task Limit Date</label>
+      <mat-form-field class="w-11/12">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-row justify-center gap-4 mb-2">
+      <button class="bg-slate-400 font-semibold text-slate-800 rounded-sm shadow-md w-fit py-1 px-4
+      hover:transition-all hover:ease-in hover:duration-500 hover:bg-slate-300 hover:text-black"
+        (click)="changeActivateNewTasks(false)">Cancel</button>
+
+      <button class="bg-blue-500 font-semibold text-white rounded-sm shadow-md w-fit py-1 px-4
+          hover:transition-all hover:ease-in hover:duration-500 hover:bg-blue-600">Save Task</button>
+    </div>
+  </fieldset>
+</form>

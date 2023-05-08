@@ -1,0 +1,24 @@
+h1 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(30 41 59 / var(--tw-bg-opacity))
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(148 163 184 / var(--tw-bg-opacity));
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(203 213 225 / var(--tw-bg-opacity));
+}

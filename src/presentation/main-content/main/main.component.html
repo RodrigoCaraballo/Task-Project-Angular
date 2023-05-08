@@ -1,0 +1,47 @@
+<div class="w-auto h-screen flex flex-col items-center bg-gradient-to-r from-sky-300 to-purple-300">
+  <div class="w-11/12 h-full flex flex-col items-center">
+    <div class="flex flex-row justify-between items-center gap-3 mb-3 w-11/12">
+      <a class="w-fit h-fit cursor-pointer text-center font-semibold text-xs text-white py-1 px-2 rounded-md bg-slate-800 mt-2
+                xsm:text-lg
+                hover:scale-105 hover:shadow-md" (click)="changeActivateNewTasks(true)">New Task</a>
+      <h1>Welcome Fulano</h1>
+    </div>
+
+    <div class="w-11/12 h-5/6 flex flex-col items-center rounded-md gap-4">
+
+      <p class="text-lg font-bold py-1 px-3 rounded-xl text-white bg-slate-800">To do</p>
+      <div class="flex flex-nowrap overflow-x-auto bg-slate-900 w-full h-3/6 rounded-lg p-1
+                  hover:scale-110 hover:shadow-md">
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+      </div>
+
+      <p class="text-lg font-bold py-1 px-3 rounded-xl text-white bg-slate-800">Completed</p>
+      <div class="flex flex-nowrap overflow-x-auto bg-slate-900 w-full h-3/6 rounded-lg p-1
+                  hover:scale-110 hover:shadow-md">
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+        <app-tasks-lists class="m-2"></app-tasks-lists>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="activateNewTasks" class="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-opacity-50 bg-gray-500 z-50">
+  <div class="w-full h-fit bg-gradient-to-r from-sky-300 to-purple-300 rounded-lg p-4
+              sm:w-2/3">
+    <app-task-form class="w-11/12 h-4/6"></app-task-form>
+  </div>
+</div>

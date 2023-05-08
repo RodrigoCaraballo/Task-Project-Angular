@@ -1,0 +1,9 @@
+<div class="mx-auto">
+  <div [ngClass]="{'fade-in': currentView === 'view1', 'fade-out': currentView === 'view2'}">
+    <app-sign-in *ngIf="currentView === 'view1'"></app-sign-in>
+  </div>
+  <div [ngClass]="{'fade-in': currentView === 'view2', 'fade-out': currentView === 'view1'}">
+    <app-sign-up *ngIf="currentView === 'view2'"></app-sign-up>
+  </div>
+</div>
+
