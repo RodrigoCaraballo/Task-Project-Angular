@@ -28,8 +28,6 @@ export class SignUpGoogleUseCase {
           return this.securityService.signUp(user)
             .pipe(
               map((token: string) => {
-                const decodedToken = jwt_decode<TokenResponse>(token);
-                this.securityService.setToken(decodedToken);
                 return token;
               }),
               catchError(() => {

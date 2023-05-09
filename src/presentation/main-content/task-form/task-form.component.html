@@ -1,14 +1,14 @@
-<form class="w-full h-full" [formGroup]="task" *ngIf="activateNewTasks">
+<form class="w-full h-full" [formGroup]="taskForm" *ngIf="activateNewTasks">
   <fieldset class="flex flex-col h-full w-full bg-slate-800 rounded-sm p-1 gap-4">
     <div class="flex flex-col w-full items-center">
       <label class="text-lg text-white font-semibold">Task Title</label>
-      <input class="h-8 w-11/12 min-h-[50px] rounded-t-md placeholder:text-center" type="text" placeholder="Buy food">
+      <input class="h-8 w-11/12 min-h-[50px] rounded-t-md placeholder:text-center" type="text" placeholder="Buy food" formControlName="title">
     </div>
 
     <div class="flex flex-col w-full items-center">
       <label class="text-lg text-white font-semibold">Task Description</label>
       <textarea class="w-11/12 min-h-[50px] rounded-t-md h-auto resize-none rounded-t-sm placeholder:text-center"
-        type="text" placeholder="The description is optional"></textarea>
+        type="text" placeholder="The description is optional" formControlName="description"></textarea>
     </div>
 
     <div class="flex flex-col w-full items-center">
@@ -27,7 +27,24 @@
         (click)="changeActivateNewTasks(false)">Cancel</button>
 
       <button class="bg-blue-500 font-semibold text-white rounded-sm shadow-md w-fit py-1 px-4
-          hover:transition-all hover:ease-in hover:duration-500 hover:bg-blue-600">Save Task</button>
+                    hover:transition-all hover:ease-in hover:duration-500 hover:bg-blue-600"
+                    (click)="saveTask()">Save Task</button>
     </div>
   </fieldset>
 </form>
+
+<div class="flex flex-col justify-center items-center fixed bottom-2 left-2 w-fit h-fit gap-2"
+  *ngIf="showErrors">
+    <p *ngIf="showErrors && taskForm.get('title')?.hasError('required')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Title is Required</p>
+
+    <p *ngIf="showErrors && taskForm.get('title')?.hasError('pattern')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Title characters must be between 4 and 30</p>
+
+    <p *ngIf="showErrors && taskForm.get('description')?.hasError('pattern')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">The length of the description must be less than 100 characters.</p>
+
+    <p *ngIf="showErrors && taskForm.get('date')?.hasError('required')"
+    class="my-auto bg-red-500 rounded-md text-white px-4 py-2">Date format is MM/DD/YYYY</p>
+
+  </div>

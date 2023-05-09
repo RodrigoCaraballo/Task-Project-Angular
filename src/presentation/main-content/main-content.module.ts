@@ -9,7 +9,7 @@ import { MainComponent } from './main/main.component';
 import { MainContentRoutingModule } from './main-content-routing.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TaskFormComponent } from './task-form/task-form.component';
-import { SharedMainContentService } from './shared-data';
+import { SharedMainContentService } from './utils';
 import { TasksListsComponent } from './tasks-lists/tasks-lists.component';
 
 
@@ -32,6 +32,6 @@ import { TasksListsComponent } from './tasks-lists/tasks-lists.component';
     MatNativeDateModule,
     MatInputModule,
   ],
-  providers: [SharedMainContentService]
+  providers: [SharedMainContentService,]
 })
 export class MainContentModule { }

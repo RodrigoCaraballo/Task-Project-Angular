@@ -6,13 +6,13 @@
       <div class="h-1/6 xsm:h-1/4 mb-6">
         <h3>Title</h3>
         <p class="m-0 p-1 rounded-sm bg-slate-700 text-xs
-                  xsm:text-base">Contenido del titulo</p>
+                  xsm:text-base">{{task?.title}}</p>
       </div>
 
       <div class="h-1/6 xsm:h-2/4">
         <h3>Deadline</h3>
         <p class="m-0 p-1 rounded-sm bg-slate-700 text-xs
-                  xsm:text-base">20/12/2023</p>
+                  xsm:text-base">{{task?.deadline | date}}</p>
       </div>
 
     </div>
@@ -21,14 +21,14 @@
 
       <div class="h-1/4">
         <h3>Description</h3>
-        <p class="m-0 p-1 rounded-sm bg-slate-700 text-xs">La música es una forma de arte que puede evocar emociones intensas y transportarnos a lugares y momentos que de otra manera podrían permanecer inaccesibles en nuestras mentes.</p>
+        <p class="m-0 p-1 rounded-sm bg-slate-700 text-xs">{{task?.description || 'No description provided'}}</p>
       </div>
     </div>
 
     <div class="h-fit flex flex-row justify-between items-end gap-3 mb-1
                 xsm:h-1/4">
-      <div class="flex flex-row gap-2 justify-start">
-        <button class="flex flex-row gap-1 justify-center items-center bg-slate-700 px-2 rounded-sm">
+      <div *ngIf="!task?.completed" class="flex flex-row gap-2 justify-start">
+        <button (click)="changeTaskState()" class="flex flex-row gap-1 justify-center items-center bg-slate-700 px-2 rounded-sm">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#008000" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M5 12l5 5l10 -10" />
@@ -37,15 +37,26 @@
         </button>
       </div>
 
+      <div *ngIf="task?.completed" class="flex flex-row gap-2 justify-start">
+        <button (click)="changeTaskState()" class="flex flex-row gap-1 justify-center items-center bg-slate-700 px-2 rounded-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+          To do
+        </button>
+      </div>
+
       <div class="h-fit flex flex-row justify-between items-end gap-3">
-        <button class="w-fit h-fit">
+        <button (click)="changeSelectedTask()" class="w-fit h-fit">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
             <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
           </svg>
         </button>
-        <button class="w-fit h-fit">
+        <button (click)="deleteOne()" class="w-fit h-fit">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="#a2231d" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <line x1="4" y1="7" x2="20" y2="7" />

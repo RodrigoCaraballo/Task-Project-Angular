@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from "@angular/common/http";
 import { SecurityService, FirebaseService } from './services';
 import { TaskService } from './services/task.service';
-import { SignInGoogleUseCase, SignInUseCase, SignUpGoogleUseCase, SignUpUseCase } from './use-cases';
+import { CreateTaskUseCase, DeleteOneTaskUseCase, GetTasksUseCase, SignInGoogleUseCase, SignInUseCase, SignOutUseCase, SignUpGoogleUseCase, SignUpUseCase, UpdateTaskUseCase } from './use-cases';
 
 
 
@@ -13,6 +13,7 @@ import { SignInGoogleUseCase, SignInUseCase, SignUpGoogleUseCase, SignUpUseCase 
     CommonModule,
     HttpClientModule,
   ],
-  providers: [SecurityService, FirebaseService, TaskService, SignInUseCase, SignInGoogleUseCase, SignUpUseCase, SignUpGoogleUseCase]
+  providers: [SecurityService, FirebaseService, TaskService, SignInUseCase, SignInGoogleUseCase, SignUpUseCase, SignUpGoogleUseCase,
+             CreateTaskUseCase, GetTasksUseCase, CreateTaskUseCase, UpdateTaskUseCase, SignOutUseCase, DeleteOneTaskUseCase]
 })
 export class ApplicationModule { }

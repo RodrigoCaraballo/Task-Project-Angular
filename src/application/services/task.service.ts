@@ -19,7 +19,7 @@ export class TaskService implements ITaskService {
     return this.http.get<ITaskModel>(`${this.url}/${this.controller}/get-task/${taskId}`)
   }
   getAll(userId: string): Observable<ITaskModel[]> {
-    return this.http.get<ITaskModel[]>(`${this.url}/${this.controller}/get-all/${userId}`)
+    return this.http.get<ITaskModel[]>(`${this.url}/${this.controller}/get-all-task/${userId}`)
   }
   updateTask(taskId: string, task: UpdateTaskRequest): Observable<ITaskModel> {
     return this.http.put<ITaskModel>(`${this.url}/${this.controller}/update-task/${taskId}`, task)

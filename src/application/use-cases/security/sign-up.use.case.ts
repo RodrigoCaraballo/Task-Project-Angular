@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { SecurityService, FirebaseService } from "../../../application/services";
-import { Observable, catchError, from, map, of, switchMap } from "rxjs";
-import jwt_decode from 'jwt-decode';
-import { TokenResponse } from "../../../domain/interfaces/responses";
+import { Observable, catchError, from, map, switchMap } from "rxjs";
 import { CreateUserRequest, FirabaseLoginRequest, SignUpRequest } from "../../../domain";
 
 @Injectable()
@@ -27,8 +25,6 @@ export class SignUpUseCase {
           return this.securityService.signUp(user)
             .pipe(
               map((token: string) => {
-                const decodedToken = jwt_decode<TokenResponse>(token);
-                this.securityService.setToken(decodedToken);
                 return token;
               }),
               catchError(() => {
