@@ -76,6 +76,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   private editTask() {
+    this.mainContentHelperService.changeSpinnerValue(true);
     const formValues = this.taskForm.getRawValue();
     const editedTask: UpdateTaskRequest = {
       title: formValues.title,
@@ -84,15 +85,22 @@ export class TaskFormComponent implements OnInit {
       completed: this.taskEdit!.completed
     };
     this.updateTaskUseCase.execute(this.taskEdit!.taskId, editedTask)
-      .subscribe((newEditedTask: ITaskModel) => {
-        this.mainContentHelperService.setDeletedTask(newEditedTask)
-          this.mainContentHelperService.addNewTask(newEditedTask);
-          this.mainContentHelperService.changeActivateState(false)
+      .subscribe({
+        next: (newEditedTask: ITaskModel) => {
+          this.mainContentHelperService.changeSpinnerValue(false);
+          this.mainContentHelperService.setDeletedTask(newEditedTask)
+            this.mainContentHelperService.addNewTask(newEditedTask);
+            this.mainContentHelperService.changeActivateState(false)
+        },
+        error: () => {
+          this.mainContentHelperService.changeSpinnerValue(false);
+        }
       });
   }
 
   private addTask() {
     if(!this.userId) return;
+    this.mainContentHelperService.changeSpinnerValue(true);
     const formValues = this.taskForm.getRawValue();
 
     const newTask: CreateTaskRequest = {
@@ -103,10 +111,16 @@ export class TaskFormComponent implements OnInit {
       completed: false
     }
     this.createTaskUseCase.execute(newTask)
-    .subscribe((newAddedTask: ITaskModel) => {
-      this.mainContentHelperService.addNewTask(newAddedTask);
-      this.mainContentHelperService.changeActivateState(false)
-  });
+    .subscribe({
+      next: (newAddedTask: ITaskModel) => {
+        this.mainContentHelperService.changeSpinnerValue(false);
+        this.mainContentHelperService.addNewTask(newAddedTask);
+        this.mainContentHelperService.changeActivateState(false)
+    },
+    error: () => {
+      this.mainContentHelperService.changeSpinnerValue(false);
+    }
+    });
   }
 
 }

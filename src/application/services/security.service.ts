@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class SecurityService implements ISecurityService {
-  url: string = 'http://localhost:3000'
+  url: string = 'https://task-project-nestjs.onrender.com'
   controller: string = 'security'
 
   constructor(

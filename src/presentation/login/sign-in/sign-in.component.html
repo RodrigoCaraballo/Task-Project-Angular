@@ -80,3 +80,11 @@
     class="my-auto bg-green-500 rounded-md text-white px-4 py-2">Login successful</p>
     </div>
 </div>
+
+<div class="flex flex-row justify-center items-center fixed bottom-2 left-2 w-fit h-fit gap-2"
+*ngIf="loadingMsg">
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 animate-spin" width="32" height="32" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3a9 9 0 1 0 9 9" />
+</svg>
+</div>

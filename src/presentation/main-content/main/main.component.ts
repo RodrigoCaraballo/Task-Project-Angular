@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   activateEditTasks: boolean = false;
   activeUser!: TokenResponse;
   signOutMessage: boolean = false;
+  loadingMsg: boolean = false;
 
   selectedTask?: ITaskModel;
 
@@ -46,6 +47,10 @@ export class MainComponent implements OnInit {
         const toDoList = this.tasksToDo.filter(t => t.taskId !== task.taskId)
         this.tasksToDo = toDoList;
     })
+    this.mainContentHelperService.getSpinner.subscribe((value: boolean) => {
+      this.loadingMsg = value
+    })
+
   }
 
   signOut(): void {
@@ -70,30 +75,35 @@ export class MainComponent implements OnInit {
   }
 
   private getLists(): void {
+    this.mainContentHelperService.changeSpinnerValue(true);
     const token = localStorage.getItem('token');
-    console.log('Hola');
-
 
     if (token) {
       const decodeToken: TokenResponse = jwt_decode(token);
       this.activeUser = decodeToken;
 
       this.getTasksUseCase.execute(decodeToken.userId)
-        .subscribe(tasks => {
-          let toDo: ITaskModel[] = [];
-          let completed: ITaskModel[] = [];
-          tasks.forEach(task => {
-            if (task.completed) completed.push(task);
-            if (!task.completed) toDo.push(task);
-          })
+        .subscribe({
+          next: tasks => {
+            let toDo: ITaskModel[] = [];
+            let completed: ITaskModel[] = [];
+            tasks.forEach(task => {
+              if (task.completed) completed.push(task);
+              if (!task.completed) toDo.push(task);
+            })
 
-          this.sortList(toDo);
-          this.sortList(completed);
+            this.sortList(toDo);
+            this.sortList(completed);
 
-          this.tasksToDo = toDo;
-          this.tasksCompleted = completed;
+            this.tasksToDo = toDo;
+            this.tasksCompleted = completed;
+          },
+          error: () => {
+            this.mainContentHelperService.changeSpinnerValue(false);
+          }
         })
     }
+    this.mainContentHelperService.changeSpinnerValue(false);
   }
 
   private sortList(list: ITaskModel[]): ITaskModel[] {
@@ -105,23 +115,32 @@ export class MainComponent implements OnInit {
   }
 
   private getAddedTask(): void {
-    this.mainContentHelperService.getNewTask.subscribe(value => {
-      if (value) {
-        if (value.completed) {
-          const toDoList = this.tasksToDo.filter(task => task.taskId !== value.taskId )
-          this.tasksToDo = toDoList;
+    this.mainContentHelperService.changeSpinnerValue(true);
+    this.mainContentHelperService.getNewTask.subscribe({
+      next: value => {
+        if (value) {
+          if (value.completed) {
+            const toDoList = this.tasksToDo.filter(task => task.taskId !== value.taskId )
+            this.tasksToDo = toDoList;
 
-          this.tasksCompleted.push(value);
-          this.sortList(this.tasksToDo);
-        }
-        if (!value.completed) {
-          const completedList = this.tasksCompleted.filter(task => task.taskId !== value.taskId )
-          this.tasksCompleted = completedList;
+            this.tasksCompleted.push(value);
+            this.sortList(this.tasksToDo);
+          }
+          if (!value.completed) {
+            const completedList = this.tasksCompleted.filter(task => task.taskId !== value.taskId )
+            this.tasksCompleted = completedList;
 
-          this.tasksToDo.push(value);
-          this.sortList(this.tasksToDo);
+            this.tasksToDo.push(value);
+            this.sortList(this.tasksToDo);
+          }
         }
+        this.mainContentHelperService.changeSpinnerValue(false);
+      },
+      error: () => {
+        this.mainContentHelperService.changeSpinnerValue(false);
       }
     })
+
+    this.mainContentHelperService.changeSpinnerValue(false);
   }
 }

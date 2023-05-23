@@ -15,20 +15,18 @@
     <div class="w-11/12 h-5/6 flex flex-col items-center rounded-md gap-4">
 
       <p class="text-lg font-bold py-1 px-3 rounded-xl text-white bg-slate-800">To do</p>
-      <div class="flex flex-nowrap overflow-x-auto bg-slate-900 w-full h-3/6 rounded-lg p-1
-                  hover:scale-110 hover:shadow-md">
+      <div class="flex flex-nowrap overflow-x-auto bg-slate-900 w-full h-3/6 rounded-lg p-1">
         <app-tasks-lists class="m-2" *ngFor="let task of tasksToDo" [task]="task"></app-tasks-lists>
         <div *ngIf="tasksToDo.length === 0" class="w-full h-full flex flex-col justify-center items-center">
-          <p class="text-center text-white text-4xl">No to do tasks</p>
+          <p class="text-center text-white text-4xl">No task to do</p>
         </div>
       </div>
 
       <p class="text-lg font-bold py-1 px-3 rounded-xl text-white bg-slate-800">Completed</p>
-      <div class="flex flex-nowrap overflow-x-auto bg-slate-900 w-full h-3/6 rounded-lg p-1
-                  hover:scale-110 hover:shadow-md">
+      <div class="flex flex-nowrap overflow-x-auto bg-slate-900 w-full h-3/6 rounded-lg p-1">
         <app-tasks-lists class="m-2" *ngFor="let task of tasksCompleted" [task]="task"></app-tasks-lists>
         <div *ngIf="tasksCompleted.length === 0" class="w-full h-full flex flex-col justify-center items-center">
-          <p class="text-center text-white text-4xl">No completed tasks</p>
+          <p class="text-center text-white text-4xl">No tasks completed</p>
         </div>
       </div>
 
@@ -40,6 +38,14 @@
 *ngIf="signOutMessage">
   <p *ngIf="signOutMessage"
   class="my-auto bg-green-500 rounded-md text-white px-4 py-2">See you soon {{activeUser.username}}</p>
+</div>
+
+<div class="flex flex-row justify-center items-center fixed bottom-2 left-2 w-fit h-fit gap-2"
+*ngIf="loadingMsg">
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-2 animate-spin" width="32" height="32" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3a9 9 0 1 0 9 9" />
+</svg>
 </div>
 
 <div *ngIf="activateNewTasks && !selectedTask" class="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-opacity-50 bg-gray-500 z-50">

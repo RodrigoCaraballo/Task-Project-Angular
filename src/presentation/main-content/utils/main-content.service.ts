@@ -17,6 +17,9 @@ export class SharedMainContentService {
   private deleteTask = new Subject<ITaskModel>
   taskDeleted = this.deleteTask.asObservable();
 
+  private spinner = new BehaviorSubject<boolean>(false);
+  getSpinner = this.spinner.asObservable();
+
   constructor() { }
 
   changeActivateState(value: boolean): void {
@@ -33,5 +36,9 @@ export class SharedMainContentService {
 
   setDeletedTask(value: ITaskModel): void {
     this.deleteTask.next(value);
+  }
+
+  changeSpinnerValue(value: boolean): void {
+    this.spinner.next(value)
   }
 }

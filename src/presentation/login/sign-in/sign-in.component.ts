@@ -1,22 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedMainLoginService } from '../utils/main-login.service';
 import { SignInGoogleUseCase, SignInUseCase } from '../../../application/use-cases';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FirebaseError } from '@angular/fire/app';
+import { SharedMainContentService } from 'src/presentation/main-content/utils';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
 
   showError = false;
   showOk = false;
   errorStatus?: number;
   firabaseStatus?: string;
+  loadingMsg: boolean = false;
 
   constructor(
     private readonly router: Router,
@@ -25,6 +27,11 @@ export class SignInComponent {
     private readonly signInGoogleUseCase: SignInGoogleUseCase,
     private readonly fb: FormBuilder
   ) { }
+  ngOnInit(): void {
+    this.sharedMainLoginService.getSpinner.subscribe(spinner => {
+      this.loadingMsg = spinner
+    })
+  }
 
   signInForm = this.fb.group({
     email: this.fb.nonNullable.control('',
@@ -35,9 +42,11 @@ export class SignInComponent {
 
   signInUser(): void {
     if(this.signInForm.valid) {
+      this.sharedMainLoginService.changeSpinnerValue(true);
       this.signInUseCase.execute(this.signInForm.getRawValue())
       .subscribe({
         next: (value) => {
+          this.sharedMainLoginService.changeSpinnerValue(false);
           if (value) {
             localStorage.setItem('token', value);
             this.showOk = true
@@ -46,9 +55,9 @@ export class SignInComponent {
               this.router.navigate(['/tasks']);
             }, 1500)
           }
-          if (!value) console.log(value);
         },
         error: (error: FirebaseError) => {
+          this.sharedMainLoginService.changeSpinnerValue(false);
           this.showError = true;
           this.firabaseStatus = error.code
           setTimeout(() => {
@@ -67,17 +76,24 @@ export class SignInComponent {
   }
 
   signInGoogle(): void {
+    this.sharedMainLoginService.changeSpinnerValue(true);
     this.signInGoogleUseCase.execute()
-    .subscribe(value => {
-      if(value) {
-        localStorage.setItem('token', value)
-        this.router.navigate(['/tasks']);
+    .subscribe({
+      next: value => {
+        this.sharedMainLoginService.changeSpinnerValue(false);
+        if(value) {
+          localStorage.setItem('token', value)
+          this.router.navigate(['/tasks']);
+        }
+      },
+      error: () => {
+        this.sharedMainLoginService.changeSpinnerValue(false);
       }
-      if(!value) console.log(value);
     })
   }
 
   changeComponent(): void {
+    this.sharedMainLoginService.changeSpinnerValue(false);
     this.sharedMainLoginService.changeMainLoginComponent('view2')
   }
 }

@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable()
 export class TaskService implements ITaskService {
 
-  url: string = 'http://localhost:3000'
+  url: string = 'https://task-project-nestjs.onrender.com'
   controller: string = 'task'
 
   constructor(

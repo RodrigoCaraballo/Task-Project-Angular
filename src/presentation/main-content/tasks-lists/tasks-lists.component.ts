@@ -29,6 +29,7 @@ export class TasksListsComponent {
   }
 
   changeTaskState(): void {
+    this.sharedMainContentService.changeSpinnerValue(true);
     if(this.task) {
       this.task.completed =!this.task.completed;
 
@@ -40,17 +41,33 @@ export class TasksListsComponent {
       }
 
       this.updateTaskeUseCase.execute(this.task.taskId, taskToUpdate)
-      .subscribe((value: ITaskModel) => {
-        this.sharedMainContentService.addNewTask(value);
+      .subscribe({
+        next: (value: ITaskModel) => {
+          this.sharedMainContentService.changeSpinnerValue(false);
+          this.sharedMainContentService.addNewTask(value);
+        },
+        error: () => {
+          this.sharedMainContentService.changeSpinnerValue(false);
+        }
       })
     }
+    this.sharedMainContentService.changeSpinnerValue(false);
   }
 
   deleteOne(): void {
-    if(this.task) this.deleteOneTaskUseCase.execute(this.task.taskId).subscribe((value: boolean) => {
-      if(value) {
-        if(this.task) this.sharedMainContentService.setDeletedTask(this.task)
+    this.sharedMainContentService.changeSpinnerValue(true);
+    if(this.task) this.deleteOneTaskUseCase.execute(this.task.taskId).subscribe({
+      next: (value: boolean) => {
+        this.sharedMainContentService.changeSpinnerValue(false);
+        if(value) {
+          if(this.task) this.sharedMainContentService.setDeletedTask(this.task)
+        }
+      },
+      error: () => {
+        this.sharedMainContentService.changeSpinnerValue(false);
       }
     })
+
+    this.sharedMainContentService.changeSpinnerValue(false);
   }
 }
