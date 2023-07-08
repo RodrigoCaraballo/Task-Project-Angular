@@ -1,6 +1,3 @@
-#### Spanish below English text
-#### Español debajo de texto en Inglés
-
 # Task Management Web - Angular
 
 #### Full Stack Project - Back-End ([https://github.com/RodrigoCaraballo/Task-Project-NestJS](https://github.com/RodrigoCaraballo/Task-Project-NestJS))
@@ -24,26 +21,6 @@ _I am open to any suggestions that could improve the application and my personal
 #### LinkedIn ([https://www.linkedin.com/in/rodrigo-caraballo/](https://www.linkedin.com/in/rodrigo-caraballo/))
 
 #### Email ([rodrigomcaraballo8@gmail.com](mailto:rodrigomcaraballo8@gmail.com))
-
-# Web de gestión de Tareas - Angular
-
-#### Proyecto Full Stack - Back-End (https://github.com/RodrigoCaraballo/Task-Project-NestJS)
-### Objetivo de la web
-La creación de esta web se hizo con el objetivo de mejorar mis habilidades personales de programación en Angular y el uso del Framework Tailwind con el objetivo extra de utilizarla en el desarrollo de un Web funcional para poner en practica habilidades de un Full Stack. Esta web esta orientada a permitir a sus usuarios a la gestión de tareas personales, permitiendo operaciones de creación, editar, cambiar estado y eliminado de tareas relacionadas con un usuario. Además cuenta con un pequeño sistema de registro e inicio de sesión.
-
-### Uso de la aplicación
-Puede hacer uso de la aplicación Full Stack en el siguiente link:
-https://casual-task-app.netlify.app
-
-La web requiere de la creación de un usuario en el menú de registro. Pero si usted prefiere no registrarse puede utilizar las siguiente credenciales para probar la web.
-Correo: casualuser@mail.com
-Contraseña: Casual1234?
-
-La aplicación no mayor instrucción para uso ya que contiene una interfaz intuitiva para probar las funcionalidades mencionadas anteriormente de creación, edición, borrado y cambio de estado de las tareas.
-
-*Estoy abierto a cualquier sugerencias que pueda mejorar la aplicación y mi desarrollo personal, muchas gracias.*
-
-### Contacto
 
 #### [](https://github.com/RodrigoCaraballo/Task-Project-NestJS#linkedin-httpswwwlinkedincominrodrigo-caraballo)[](https://github.com/RodrigoCaraballo#linkedin-httpswwwlinkedincominrodrigo-caraballo-1)LinkedIn ([https://www.linkedin.com/in/rodrigo-caraballo/](https://www.linkedin.com/in/rodrigo-caraballo/))
 
