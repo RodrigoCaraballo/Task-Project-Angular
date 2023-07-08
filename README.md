@@ -21,7 +21,3 @@ _I am open to any suggestions that could improve the application and my personal
 #### LinkedIn ([https://www.linkedin.com/in/rodrigo-caraballo/](https://www.linkedin.com/in/rodrigo-caraballo/))
 
 #### Email ([rodrigomcaraballo8@gmail.com](mailto:rodrigomcaraballo8@gmail.com))
-
-#### [](https://github.com/RodrigoCaraballo/Task-Project-NestJS#linkedin-httpswwwlinkedincominrodrigo-caraballo)[](https://github.com/RodrigoCaraballo#linkedin-httpswwwlinkedincominrodrigo-caraballo-1)LinkedIn ([https://www.linkedin.com/in/rodrigo-caraballo/](https://www.linkedin.com/in/rodrigo-caraballo/))
-
-#### [](https://github.com/RodrigoCaraballo/Task-Project-NestJS#correo-rodrigomcaraballo8gmailcom)[](https://github.com/RodrigoCaraballo#correo-rodrigomcaraballo8gmailcom)Correo ([rodrigomcaraballo8@gmail.com](mailto:rodrigomcaraballo8@gmail.com))
